@@ -37,15 +37,7 @@ export async function action( { request } ){
 
   let settings = await request.formData();
 
-  // settings = Object.fromEntries( settings.entries() ); Object.fromEntries( settings.entries() );
-
   settings = Object.fromEntries( settings.entries() );
-
-  // let settings = {name: 'TEST HERE TEST HERE'};
-  // settings = {
-  //   "checked": settings
-  // }
-  // console.log(settings)
 
   await db.settings.upsert({
     where: {
@@ -60,7 +52,6 @@ export async function action( { request } ){
       value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
     }
   });
-
 
   return json( settings );
 
