@@ -15,18 +15,21 @@ import { authenticate } from "../shopify.server";
 import db from "../db.server";
 
 export async function loader ( { request } ) {
-    await authenticate.admin(request);
-  // 
-  // let settings = {checked: false};
 
-    let settings = await db.settings.findUnique({
-      where:{
-        id: 'EnabledCheckout18yoModal'
-      }
-    });
+  await authenticate.admin(request);
 
+  let settings = await db.settings.findUnique({
+    where:{
+      id: 'EnabledCheckout18yoModal'
+    }
+  });
 
-  return json( { checked: ( settings.value == 'active' ? true : false ), apiKey: process.env.SHOPIFY_API_KEY || "" } );
+  return json( 
+    { 
+      apiKey: process.env.SHOPIFY_API_KEY || "", 
+      checked: ( settings.value == 'active' ? true : false ) 
+    } 
+  );
 
 };
 
@@ -70,7 +73,7 @@ export default function AppSettings(){
 
   return (
 
-    <AppProvider isEmbeddedApp apiKey={apiKey}>
+    <AppProvider isEmbeddedApp apiKey={ settings.apiKey }>
       <Form method="POST">
             <Page title="General" primaryAction={<Button submit={true}>Save</Button>}>
               <Card>
