@@ -10,10 +10,12 @@ import {
 
 import { useLoaderData, useActionData, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
+import { authenticate } from "../shopify.server";
 
 import db from "../db.server";
 
 export async function loader ( { request } ) {
+    await authenticate.admin(request);
   // 
   // let settings = {checked: false};
 
