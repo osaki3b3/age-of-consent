@@ -53,7 +53,7 @@ function Extension() {
 
   useEffect(function(){
 
-    const domain = 'https://reported-many-appointment-electro.trycloudflare.com';
+    const domain = 'https://dolphin-app-pzgya.ondigitalocean.app';
     fetch(
       `${domain}/api/settings`,
       {
