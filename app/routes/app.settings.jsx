@@ -64,7 +64,7 @@ export default function AppSettings(){
 
   return (
 
-    <AppProvider isEmbeddedApp apiKey={ settings.apiKey }>
+    <AppProvider isEmbeddedApp apiKey={ formState.apiKey }>
       <Form method="POST">
             <Page title="General" primaryAction={<Button submit={true}>Save</Button>}>
               <Card>
