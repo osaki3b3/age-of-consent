@@ -26,7 +26,7 @@ export async function loader ( { request } ) {
     });
 
 
-  return json( { checked: ( settings.value == 'active' ? true : false ) } );
+  return json( { checked: ( settings.value == 'active' ? true : false ), apiKey: process.env.SHOPIFY_API_KEY || "" } );
 
 };
 
@@ -70,7 +70,7 @@ export default function AppSettings(){
 
   return (
 
-    <AppProvider>
+    <AppProvider isEmbeddedApp apiKey={apiKey}>
       <Form method="POST">
             <Page title="General" primaryAction={<Button submit={true}>Save</Button>}>
               <Card>
