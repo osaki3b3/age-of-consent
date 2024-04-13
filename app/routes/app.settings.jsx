@@ -8,6 +8,7 @@ import {
   Checkbox
 } from '@shopify/polaris';
 
+import { boundary } from "@shopify/shopify-app-remix/server";
 import { useLoaderData, useActionData, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
@@ -27,7 +28,8 @@ export async function loader ( { request } ) {
   return json( 
     { 
       apiKey: process.env.SHOPIFY_API_KEY || "", 
-      checked: ( settings.value == 'active' ? true : false ) 
+      // checked: ( settings.value == 'active' ? true : false ) 
+      checked: true
     } 
   );
 
