@@ -21,19 +21,24 @@ export async function loader ( { request } ) {
 
   await authenticate.admin(request);
 
-  let settings = await db.settings.findUnique({
+  let settings = { 
+    apiKey: process.env.SHOPIFY_API_KEY || "", 
+    checked: false
+  }
+
+  let dbFindUnique = await db.settings.findUnique({
     where:{
       id: 'EnabledCheckout18yoModal'
     }
   });
+  
+  if( typeof dbFindUnique != 'undefined' && typeof dbFindUnique.value != 'undefined' ){
+    if ( dbFindUnique.value == "active" ){
+      settings.checked = true;
+    }
+  }
 
-  return json( 
-    { 
-      apiKey: process.env.SHOPIFY_API_KEY || "", 
-      // checked: ( settings.value == 'active' ? true : false ) 
-      checked: true
-    } 
-  );
+  return json( settings );
 
 };
 
@@ -42,6 +47,8 @@ export async function action( { request } ){
   let settings = await request.formData();
 
   settings = Object.fromEntries( settings.entries() );
+
+  console.lop('> action = settings: ', settings);
 
   // await db.settings.upsert({
   //   where: {
