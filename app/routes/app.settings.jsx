@@ -15,7 +15,7 @@ import { useLoaderData, useRouteError, useActionData, Form } from '@remix-run/re
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-import db from "../db.server";
+// import db from "../db.server";
 
 export async function loader ( { request } ) {
 
@@ -48,7 +48,7 @@ export async function action( { request } ){
 
   settings = Object.fromEntries( settings.entries() );
 
-  console.lop('> action = settings: ', settings);
+  // console.lop('> action = settings: ', settings);
 
   // await db.settings.upsert({
   //   where: {
