@@ -2,7 +2,7 @@
   "name": "drkellyann-checkout-18yo-modal",
   "private": true,
   "scripts": {
-    "build": "vite build && vite build --ssr",
+    "build": "vite build && vite build --ssr && prisma generate && prisma migrate deploy",
     "dev": "shopify app dev",
     "config:link": "shopify app config link",
     "generate": "shopify app generate",

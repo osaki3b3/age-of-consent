@@ -33,7 +33,7 @@ export default function ApiSettings(){
     settings = useLoaderData();
 
 
-    return ( json( settings ) )
+    return ( JSON.stringify(settings) )
 }
 
 // Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
