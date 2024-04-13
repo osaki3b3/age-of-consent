@@ -15,17 +15,17 @@ import { useLoaderData, useRouteError, useActionData, Form } from '@remix-run/re
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-// import db from "../db.server";
+import db from "../db.server";
 
 export async function loader ( { request } ) {
 
   await authenticate.admin(request);
 
-  // let settings = await db.settings.findUnique({
-  //   where:{
-  //     id: 'EnabledCheckout18yoModal'
-  //   }
-  // });
+  let settings = await db.settings.findUnique({
+    where:{
+      id: 'EnabledCheckout18yoModal'
+    }
+  });
 
   return json( 
     { 
