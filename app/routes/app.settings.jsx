@@ -9,7 +9,7 @@ import {
 } from '@shopify/polaris';
 
 import { boundary } from "@shopify/shopify-app-remix/server";
-import { useLoaderData, useActionData, Form } from '@remix-run/react';
+import { useLoaderData, useRouteError, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
@@ -41,19 +41,19 @@ export async function action( { request } ){
 
   settings = Object.fromEntries( settings.entries() );
 
-  await db.settings.upsert({
-    where: {
-      id: "EnabledCheckout18yoModal",
-    },
-    update: {
-      id: 'EnabledCheckout18yoModal',
-      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
-    },
-    create: {
-      id: 'EnabledCheckout18yoModal',
-      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
-    }
-  });
+  // await db.settings.upsert({
+  //   where: {
+  //     id: "EnabledCheckout18yoModal",
+  //   },
+  //   update: {
+  //     id: 'EnabledCheckout18yoModal',
+  //     value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+  //   },
+  //   create: {
+  //     id: 'EnabledCheckout18yoModal',
+  //     value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+  //   }
+  // });
 
   return json( settings );
 
