@@ -12,11 +12,11 @@ import { useLoaderData, useActionData, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-import db from "../db.server";
+// import db from "../db.server";
 
 export async function loader ( { request } ) {
 
-  // await authenticate.admin(request);
+  await authenticate.admin(request);
 
   // let settings = await db.settings.findUnique({
   //   where:{
@@ -24,20 +24,20 @@ export async function loader ( { request } ) {
   //   }
   // });
 
-  // return json( 
-  //   { 
-  //     apiKey: process.env.SHOPIFY_API_KEY || "", 
-  //     checked: ( settings.value == 'active' ? true : false ) 
-  //   } 
-  // );
+  return json( 
+    { 
+      apiKey: process.env.SHOPIFY_API_KEY || "", 
+      checked: ( settings.value == 'active' ? true : false ) 
+    } 
+  );
 
 };
 
 export async function action( { request } ){
 
-  // let settings = await request.formData();
+  let settings = await request.formData();
 
-  // settings = Object.fromEntries( settings.entries() );
+  settings = Object.fromEntries( settings.entries() );
 
   // await db.settings.upsert({
   //   where: {
@@ -53,35 +53,48 @@ export async function action( { request } ){
   //   }
   // });
 
-  // return json( settings );
+  return json( settings );
 
 }
 
 export default function AppSettings(){
 
-  // const settings = useLoaderData();
-  // const [formState, setFormState] = useState(settings);
+  const settings = useLoaderData();
+  const [formState, setFormState] = useState(settings);
 
   return (
 
-    // <AppProvider isEmbeddedApp apiKey={ formState.apiKey }>
-    //   <Form method="POST">
-    //         <Page title="General" primaryAction={<Button submit={true}>Save</Button>}>
-    //           <Card>
+    <Page  backAction={{content: 'Home', url: '/'}} title="Settings" primaryAction={<Button submit={true}>Save</Button>}>
+    
 
-                <Checkbox
-                  label="Enable NYC AgeCheck Popup"
-                  name="modalCheckbox"
-                  value="active"
-                  // checked={formState.checked}
-                  // onChange={( checked ) => setFormState({ ...formState, checked: checked })}
-                />
+      <AppProvider isEmbeddedApp apiKey={ formState.apiKey }>
+        <Form method="POST">
+          <Card>
 
-    //           </Card>
-    //         </Page>
-    //   </Form>
-    // </AppProvider>
+            <Checkbox
+              label="Enable NYC AgeCheck Popup"
+              name="modalCheckbox"
+              value="active"
+              checked={formState.checked}
+              onChange={( checked ) => setFormState({ ...formState, checked: checked })}
+            />
 
+          </Card>
+        </Form>
+      </AppProvider>
+      
+
+
+    </Page>
   );
 
 }
+
+// Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
+export function ErrorBoundary() {
+  return boundary.error(useRouteError());
+}
+
+export const headers = (headersArgs) => {
+  return boundary.headers(headersArgs);
+};

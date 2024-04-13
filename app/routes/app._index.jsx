@@ -21,7 +21,7 @@ export default function Index() {
 
   return ( 
 
-    <Page>
+    <Page title="General">
 
       
       <BlockStack gap="500">
