@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 
+
+
 import {
   Page,
   Card,
@@ -9,27 +11,27 @@ import {
 } from '@shopify/polaris';
 
 import { boundary } from "@shopify/shopify-app-remix/server";
-import { useLoaderData, useRouteError, Form } from '@remix-run/react';
+import { useLoaderData, useRouteError, useActionData, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-import db from "../db.server";
+// import db from "../db.server";
 
 export async function loader ( { request } ) {
 
   await authenticate.admin(request);
 
-  let settings = await db.settings.findUnique({
-    where:{
-      id: 'EnabledCheckout18yoModal'
-    }
-  });
+  // let settings = await db.settings.findUnique({
+  //   where:{
+  //     id: 'EnabledCheckout18yoModal'
+  //   }
+  // });
 
   return json( 
     { 
       apiKey: process.env.SHOPIFY_API_KEY || "", 
-      checked: ( settings.value == 'active' ? true : false ) 
-      // checked: true
+      // checked: ( settings.value == 'active' ? true : false ) 
+      checked: true
     } 
   );
 
