@@ -26,17 +26,17 @@ export async function loader ( { request } ) {
     checked: false
   }
 
-  let dbFindUnique = await db.settings.findUnique({
-    where:{
-      id: 'EnabledCheckout18yoModal'
-    }
-  });
+  // let dbFindUnique = await db.settings.findUnique({
+  //   where:{
+  //     id: 'EnabledCheckout18yoModal'
+  //   }
+  // });
   
-  if( typeof dbFindUnique != 'undefined' && typeof dbFindUnique.value != 'undefined' ){
-    if ( dbFindUnique.value == "active" ){
-      settings.checked = true;
-    }
-  }
+  // if( typeof dbFindUnique != 'undefined' && typeof dbFindUnique.value != 'undefined' ){
+  //   if ( dbFindUnique.value == "active" ){
+  //     settings.checked = true;
+  //   }
+  // }
 
   return json( settings );
 
