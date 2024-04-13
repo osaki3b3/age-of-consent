@@ -13,23 +13,23 @@ import { useLoaderData, useActionData, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
-// import db from "../db.server";
+import db from "../db.server";
 
 export async function loader ( { request } ) {
 
   await authenticate.admin(request);
 
-  // let settings = await db.settings.findUnique({
-  //   where:{
-  //     id: 'EnabledCheckout18yoModal'
-  //   }
-  // });
+  let settings = await db.settings.findUnique({
+    where:{
+      id: 'EnabledCheckout18yoModal'
+    }
+  });
 
   return json( 
     { 
       apiKey: process.env.SHOPIFY_API_KEY || "", 
-      // checked: ( settings.value == 'active' ? true : false ) 
-      checked: true
+      checked: ( settings.value == 'active' ? true : false ) 
+      // checked: true
     } 
   );
 
@@ -41,19 +41,19 @@ export async function action( { request } ){
 
   settings = Object.fromEntries( settings.entries() );
 
-  // await db.settings.upsert({
-  //   where: {
-  //     id: "EnabledCheckout18yoModal",
-  //   },
-  //   update: {
-  //     id: 'EnabledCheckout18yoModal',
-  //     value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
-  //   },
-  //   create: {
-  //     id: 'EnabledCheckout18yoModal',
-  //     value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
-  //   }
-  // });
+  await db.settings.upsert({
+    where: {
+      id: "EnabledCheckout18yoModal",
+    },
+    update: {
+      id: 'EnabledCheckout18yoModal',
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+    },
+    create: {
+      id: 'EnabledCheckout18yoModal',
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+    }
+  });
 
   return json( settings );
 
