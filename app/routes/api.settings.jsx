@@ -29,6 +29,13 @@ export async function action( { request  } ){
     
 }
 
+export default function ApiSettings(){
+    settings = useLoaderData();
+
+
+    return ( json( settings ) )
+}
+
 // Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
 export function ErrorBoundary() {
     return boundary.error(useRouteError());
