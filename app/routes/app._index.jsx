@@ -16,11 +16,13 @@ export const loader = async ({ request }) => {
 
   const prisma = new PrismaClient();
 
-  const settingsEntries = await prisma.settings.count({});
+  // const settingsEntries = await prisma.settings.count({});
 
 
 
-  return { entries: settingsEntries };
+  // return { entries: settingsEntries };
+
+  return null;
   
 };
 
