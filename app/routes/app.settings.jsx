@@ -44,7 +44,7 @@ export async function action( { request } ){
 
   settings = Object.fromEntries( settings.entries() );
 
-  console.lop('> action = settings: ', settings);
+  console.log('> action = settings: ', settings);
 
   await prisma.settings.upsert({
     where: {
