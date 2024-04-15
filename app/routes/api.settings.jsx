@@ -12,7 +12,7 @@ export const loader = async ({ request }) => {
         }
     });
 
-    return {checked: ( isModalEnabled == 'active' ) ? true : false };
+    return {checked: ( isModalEnabled.value == 'active' ) ? true : false };
 
 };
 
