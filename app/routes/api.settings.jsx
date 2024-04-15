@@ -5,16 +5,10 @@ export const loader = async ({ request }) => {
 
     // await authenticate.admin(request);
 
-    return null;
+    return {checked: true};
 
 };
 
-export async function loader () {
-
-
-    return {checked: true};
-}
-  
   
 export default function Index() {
 
