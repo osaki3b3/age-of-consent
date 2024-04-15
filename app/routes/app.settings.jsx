@@ -27,7 +27,11 @@ export async function loader ( { request } ) {
 
   let settings = { 
     apiKey: process.env.SHOPIFY_API_KEY || "", 
-    checked: ( isModalEnabled.value == 'active' ) ? true : false,
+    checked: false,
+  }
+
+  if( typeof isModalEnabled.value != null ){
+    settings.checked = ( isModalEnabled.value == 'active' ) ? true : false
   }
 
   console.log('> settings: ', settings, isModalEnabled);
