@@ -43,7 +43,7 @@ export default function Index() {
               
                 <BlockStack gap="200">
                   <Text as="h3" variant="headingMd">
-                  NYC AgeCheck Popup | {loader.entries}
+                  NYC AgeCheck Popup
                   </Text>
                   <Text as="p">
                   NYC AgeCheck Popup adds an age verification popup to your checkout page, ensuring all customers are over 18 in NY, in compliance with state regulations.

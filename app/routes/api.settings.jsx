@@ -19,7 +19,7 @@ export async function loader( { request } ){
     // });
 
     // return json( { checked: ( settings.value == 'active' ? true : false ) } );
-    return json( { checked: true } );
+    // return json( { checked: true } );
 
 }
 
@@ -30,10 +30,10 @@ export async function action( { request  } ){
 }
 
 export default function ApiSettings(){
-    settings = useLoaderData();
+    // settings = useLoaderData();
 
 
-    return ( JSON.stringify(settings) )
+    return ( 'this is a test' )
 }
 
 // Shopify needs Remix to catch some thrown responses, so that their headers are included in the response.
