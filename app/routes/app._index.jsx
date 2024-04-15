@@ -8,13 +8,13 @@ import {
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
 
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
 
 export const loader = async ({ request }) => {
 
   await authenticate.admin(request);
 
-  const prisma = new PrismaClient();
+  // const prisma = new PrismaClient();
 
   // const settingsEntries = await prisma.settings.count({});
 
