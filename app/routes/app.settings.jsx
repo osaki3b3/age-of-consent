@@ -25,17 +25,21 @@ export async function loader ( { request } ) {
   const prisma = new PrismaClient();
   const count = await prisma.settings.count();
 
+  const isModalEnabled = await prisma.settings.findUnique({
+    where:{
+      id: 'EnabledCheckout18yoModal'
+    }
+  });
+
   let settings = { 
     apiKey: process.env.SHOPIFY_API_KEY || "", 
-    checked: false,
+    checked: isModalEnabled,
     count: count
   }
 
-  // let dbFindUnique = await db.settings.findUnique({
-  //   where:{
-  //     id: 'EnabledCheckout18yoModal'
-  //   }
-  // });
+  console.log('> settings: ', settings)
+
+  
   
   // if( typeof dbFindUnique != 'undefined' && typeof dbFindUnique.value != 'undefined' ){
   //   if ( dbFindUnique.value == "active" ){
