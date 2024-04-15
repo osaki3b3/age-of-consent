@@ -53,23 +53,23 @@ function Extension() {
 
   useEffect(function(){
 
-    // const domain = 'https://sea-lion-app-t26u5.ondigitalocean.app/';
-    // fetch(
-    //   `${domain}/api/settings`,
-    //   {
-    //     method: 'GET',
-    //     headers: {
-    //       "Content-Type": "application.json",
-    //       "Access-Control-Allow-Origin": "*",
-    //       "Access-Control-Allow-Methods": "GET",
-    //       "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
-    //     }
-    //   }
-    // )
-    // .then( response => response.json() )
-    // .then( data => {
+    const domain = 'https://sea-lion-app-t26u5.ondigitalocean.app/';
+    fetch(
+      `${domain}/api/settings`,
+      {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application.json",
+          "Access-Control-Allow-Origin": "*",
+          "Access-Control-Allow-Methods": "GET",
+          "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
+        }
+      }
+    )
+    .then( response => response.json() )
+    .then( data => {
       
-    // });
+    });
 
     setIsEnabledInSettings( isEnabledInSettings => isEnabledInSettings = true )
     
