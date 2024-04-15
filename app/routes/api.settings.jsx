@@ -1,18 +1,25 @@
 import { authenticate } from "../shopify.server";
+import { useLoaderData } from "@remix-run/react";
 
-    export const loader = async ({ request }) => {
+export const loader = async ({ request }) => {
 
     await authenticate.admin(request);
 
     return null;
 
 };
+
+export async function loader () {
+
+
+    return {checked: true};
+}
   
   
 export default function Index() {
 
-    // let loader = useLoaderData();
+    let loader = useLoaderData();
 
-    return ('test here');
+    return ( JSON.stringify( json( loader ) ) );
 
 }
