@@ -16,7 +16,7 @@ export const loader = async ({ request }) => {
         checked: false
     }
 
-    if( typeof isModalEnabled.value != null ){
+    if( isModalEnabled ){
         settings.checked = ( isModalEnabled.value == 'active' ) ? true : false
     }
 

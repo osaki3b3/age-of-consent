@@ -30,7 +30,7 @@ export async function loader ( { request } ) {
     checked: false,
   }
 
-  if( typeof isModalEnabled.value != null ){
+  if( isModalEnabled ){
     settings.checked = ( isModalEnabled.value == 'active' ) ? true : false
   }
 
