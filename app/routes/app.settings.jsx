@@ -79,7 +79,7 @@ export default function AppSettings(){
 
   return (
 
-    <Page  backAction={{content: 'Home', url: '/'}} title="Settings" primaryAction={<Button submit={true}>Save</Button>}>
+    <Page  backAction={{content: 'Home', url: '/'}} title="Settings">
     
 
       <AppProvider isEmbeddedApp apiKey={ formState.apiKey }>
@@ -93,6 +93,8 @@ export default function AppSettings(){
               checked={formState.checked}
               onChange={( checked ) => setFormState({ ...formState, checked: checked })}
             />
+
+            <Button submit={true}>Submit</Button>
 
           </Card>
         </Form>
