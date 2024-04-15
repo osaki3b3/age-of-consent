@@ -7,20 +7,18 @@ import {
   Card,
   Button,
   AppProvider,
-  Checkbox
+  Checkbox,
+  View
 } from '@shopify/polaris';
 
 import { boundary } from "@shopify/shopify-app-remix/server";
 import { useLoaderData, useRouteError, useActionData, Form } from '@remix-run/react';
 import { json } from "@remix-run/node";
-import { authenticate } from "../shopify.server";
 
-// import db from "../db.server";
 import { PrismaClient } from '@prisma/client';
 
 export async function loader ( { request } ) {
 
-  await authenticate.admin(request);
 
   const prisma = new PrismaClient();
 
@@ -32,10 +30,10 @@ export async function loader ( { request } ) {
 
   let settings = { 
     apiKey: process.env.SHOPIFY_API_KEY || "", 
-    checked: ( typeof isModalEnabled != null && isModalEnabled == 'active' ) ? true : false,
+    checked: ( isModalEnabled ) ? isModalEnabled : 'false',
   }
 
-  console.log('> settings: ', settings)
+  console.log('> settings: ', settings, isModalEnabled);
 
   return json( settings );
 
@@ -49,7 +47,7 @@ export async function action( { request } ){
 
   settings = Object.fromEntries( settings.entries() );
 
-  // console.lop('> action = settings: ', settings);
+  console.lop('> action = settings: ', settings);
 
   await prisma.settings.upsert({
     where: {
@@ -86,15 +84,19 @@ export default function AppSettings(){
         <Form method="POST">
           <Card>
 
-            <Checkbox
-              label="Enable NYC AgeCheck Popup"
-              name="modalCheckbox"
-              value="active"
-              checked={formState.checked}
-              onChange={( checked ) => setFormState({ ...formState, checked: checked })}
-            />
+            <View>
+              <Checkbox
+                label="Enable NYC AgeCheck Popup"
+                name="modalCheckbox"
+                value="active"
+                checked={formState.checked}
+                onChange={( checked ) => setFormState({ ...formState, checked: checked })}
+              />
+            </View>
 
-            <Button submit={true}>Submit</Button>
+            <View>
+              <Button submit={true}>Submit</Button>
+            </View>
 
           </Card>
         </Form>

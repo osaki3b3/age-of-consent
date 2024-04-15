@@ -3,17 +3,23 @@ import { useLoaderData } from "@remix-run/react";
 
 export const loader = async ({ request }) => {
 
-    // await authenticate.admin(request);
+    const prisma = new PrismaClient();
 
-    return {checked: true};
+    let isModalEnabled = await prisma.settings.findUnique({
+        where:{
+            id: 'EnabledCheckout18yoModal'
+        }
+    });
+
+    return {checked: ( isModalEnabled ) ? isModalEnabled : 'false', };
 
 };
 
   
 export default function Index() {
 
-    let loader = useLoaderData();
+    let settings = useLoaderData();
 
-    return ( '{checked: '+loader.checked+'}' );
+    return ( '{checked: '+settings.checked+'}' );
 
 }
