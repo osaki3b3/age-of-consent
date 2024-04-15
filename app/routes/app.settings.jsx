@@ -91,7 +91,7 @@ export default function AppSettings(){
                 />
               </p>
 
-              <p style="margin-top: 10px;">
+              <p style={ {'margin-top': '10px'} }>
                 <Button submit={true}>Submit</Button>
               </p>
 
