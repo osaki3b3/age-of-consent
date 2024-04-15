@@ -9,8 +9,8 @@ generator client {
 // enough when changing adapters.
 // See https://www.prisma.io/docs/orm/reference/prisma-schema-reference#string for more information
 datasource db {
-  provider = "postgresql"
-  url      = "postgresql://[::1]:3000/dev"
+  provider = "mysql"
+  url      = "mysql://u502020124_eighteenyoapp:Welcome123#Welcome123#@191.96.56.58:3306/u502020124_eighteenyoapp"
 }
 
 model Session {
