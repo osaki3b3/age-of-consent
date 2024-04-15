@@ -8,7 +8,7 @@ import {
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
 
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
 
 export const loader = async ({ request }) => {
 
