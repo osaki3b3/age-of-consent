@@ -23,7 +23,6 @@ export async function loader ( { request } ) {
   await authenticate.admin(request);
 
   const prisma = new PrismaClient();
-  const count = await prisma.settings.count();
 
   const isModalEnabled = await prisma.settings.findUnique({
     where:{
@@ -33,19 +32,10 @@ export async function loader ( { request } ) {
 
   let settings = { 
     apiKey: process.env.SHOPIFY_API_KEY || "", 
-    checked: isModalEnabled,
-    count: count
+    checked: ( typeof isModalEnabled != null && isModalEnabled == 'active' ) ? true : false,
   }
 
   console.log('> settings: ', settings)
-
-  
-  
-  // if( typeof dbFindUnique != 'undefined' && typeof dbFindUnique.value != 'undefined' ){
-  //   if ( dbFindUnique.value == "active" ){
-  //     settings.checked = true;
-  //   }
-  // }
 
   return json( settings );
 
@@ -53,25 +43,27 @@ export async function loader ( { request } ) {
 
 export async function action( { request } ){
 
+  const prisma = new PrismaClient();
+
   let settings = await request.formData();
 
   settings = Object.fromEntries( settings.entries() );
 
   // console.lop('> action = settings: ', settings);
 
-  // await db.settings.upsert({
-  //   where: {
-  //     id: "EnabledCheckout18yoModal",
-  //   },
-  //   update: {
-  //     id: 'EnabledCheckout18yoModal',
-  //     value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
-  //   },
-  //   create: {
-  //     id: 'EnabledCheckout18yoModal',
-  //     value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
-  //   }
-  // });
+  await prisma.settings.upsert({
+    where: {
+      id: "EnabledCheckout18yoModal",
+    },
+    update: {
+      id: 'EnabledCheckout18yoModal',
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+    },
+    create: {
+      id: 'EnabledCheckout18yoModal',
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+    }
+  });
 
   return json( settings );
 

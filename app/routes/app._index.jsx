@@ -8,36 +8,23 @@ import {
 } from "@shopify/polaris";
 import { authenticate } from "../shopify.server";
 
-// import { PrismaClient } from '@prisma/client';
-
 export const loader = async ({ request }) => {
 
   await authenticate.admin(request);
-
-  // const prisma = new PrismaClient();
-
-  // const settingsEntries = await prisma.settings.count({});
-
-
-
-  // return { entries: settingsEntries };
 
   return null;
   
 };
 
-
 export default function Index() {
-
-  // let loader = useLoaderData();
 
   return ( 
 
     <Page title="General">
-
       
       <BlockStack gap="500">
         <Layout>
+          
           <Layout.Section>
             <Card>
               
@@ -64,6 +51,8 @@ export default function Index() {
           
         </Layout>
       </BlockStack>
+
     </Page>
+
   );
 }
