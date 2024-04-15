@@ -1,5 +1,9 @@
 // import { authenticate } from "../shopify.server";
 
+import {
+    Page
+} from "@shopify/polaris";
+
 import { useLoaderData } from "@remix-run/react";
 import { PrismaClient } from '@prisma/client';
 
