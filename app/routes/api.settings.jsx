@@ -14,6 +14,6 @@ export default function Index() {
 
     let loader = useLoaderData();
 
-    return ( JSON.stringify( json( loader ) ) );
+    return ( '{checked: '+loader.checked+'}' );
 
 }
