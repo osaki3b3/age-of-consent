@@ -27,7 +27,7 @@ export async function loader ( { request } ) {
 
   let settings = { 
     apiKey: process.env.SHOPIFY_API_KEY || "", 
-    checked: ( isModalEnabled ) ? isModalEnabled : 'false',
+    checked: ( isModalEnabled == 'active' ) ? true : false,
   }
 
   console.log('> settings: ', settings, isModalEnabled);
@@ -52,11 +52,11 @@ export async function action( { request } ){
     },
     update: {
       id: 'EnabledCheckout18yoModal',
-      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : ''
     },
     create: {
       id: 'EnabledCheckout18yoModal',
-      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'false'
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : ''
     }
   });
 
@@ -91,7 +91,7 @@ export default function AppSettings(){
                 />
               </p>
 
-              <p>
+              <p style="margin-top: 10px;">
                 <Button submit={true}>Submit</Button>
               </p>
 

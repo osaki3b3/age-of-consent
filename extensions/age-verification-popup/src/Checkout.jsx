@@ -53,7 +53,7 @@ function Extension() {
 
   useEffect(function(){
 
-    const domain = 'https://sea-lion-app-t26u5.ondigitalocean.app/';
+    const domain = 'https://sea-lion-app-t26u5.ondigitalocean.app';
     fetch(
       `${domain}/api/settings`,
       {
@@ -68,10 +68,8 @@ function Extension() {
     )
     .then( response => response.json() )
     .then( data => {
-      
+      setIsEnabledInSettings( isEnabledInSettings => isEnabledInSettings = data.checked )
     });
-
-    setIsEnabledInSettings( isEnabledInSettings => isEnabledInSettings = true )
     
   })
 
