@@ -1,14 +1,11 @@
 import React, { useState, useCallback } from 'react';
 
-
-
 import {
   Page,
   Card,
   Button,
   AppProvider,
-  Checkbox,
-  View
+  Checkbox
 } from '@shopify/polaris';
 
 import { boundary } from "@shopify/shopify-app-remix/server";
@@ -84,19 +81,19 @@ export default function AppSettings(){
         <Form method="POST">
           <Card>
 
-            <View>
-              <Checkbox
-                label="Enable NYC AgeCheck Popup"
-                name="modalCheckbox"
-                value="active"
-                checked={formState.checked}
-                onChange={( checked ) => setFormState({ ...formState, checked: checked })}
-              />
-            </View>
+              <p>
+                <Checkbox
+                  label="Enable NYC AgeCheck Popup"
+                  name="modalCheckbox"
+                  value="active"
+                  checked={formState.checked}
+                  onChange={( checked ) => setFormState({ ...formState, checked: checked })}
+                />
+              </p>
 
-            <View>
-              <Button submit={true}>Submit</Button>
-            </View>
+              <p>
+                <Button submit={true}>Submit</Button>
+              </p>
 
           </Card>
         </Form>

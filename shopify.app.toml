@@ -3,7 +3,7 @@
 client_id = "ff150cec990693019510c30b1c2b48f5"
 name = "NYC AgeCheck Popup"
 handle = "drkellyann-checkout-18yo-modal"
-application_url = "https://dolphin-app-pzgya.ondigitalocean.app"
+application_url = "https://sea-lion-app-t26u5.ondigitalocean.app/"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://dolphin-app-pzgya.ondigitalocean.app/auth/callback",
-  "https://dolphin-app-pzgya.ondigitalocean.app/auth/shopify/callback",
-  "https://dolphin-app-pzgya.ondigitalocean.app/api/auth/callback"
+  "https://sea-lion-app-t26u5.ondigitalocean.app/auth/callback",
+  "https://sea-lion-app-t26u5.ondigitalocean.app/auth/shopify/callback",
+  "https://sea-lion-app-t26u5.ondigitalocean.app/api/auth/callback"
 ]
 
 [webhooks]
