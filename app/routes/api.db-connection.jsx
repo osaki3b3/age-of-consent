@@ -12,13 +12,15 @@ export const loader = async ({ request }) => {
     const prisma = new PrismaClient();
 
     let count = await prisma.settings.count();
-    // let settings = await prisma.settings.findUnique({
-    //     where:{
-    //         id: 'EnabledCheckout18yoModal'
-    //     }
-    // });
 
-    // await authenticate.admin(request);
+    let settings = await prisma.settings.findUnique({
+        where:{
+            id: 'EnabledCheckout18yoModal'
+        }
+    });
+
+    console.log('> db: ', count, settings);
+
 
     return count;
  
@@ -32,9 +34,7 @@ export default function Index() {
     console.log( '> settings: ', settings )
 
     return ( 
-        <Page>
-            Init
-        </Page>
+        <Page>DB Connection</Page>
     );
 
 }
