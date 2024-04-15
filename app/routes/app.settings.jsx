@@ -16,14 +16,19 @@ import { json } from "@remix-run/node";
 import { authenticate } from "../shopify.server";
 
 // import db from "../db.server";
+import { PrismaClient } from '@prisma/client';
 
 export async function loader ( { request } ) {
 
   await authenticate.admin(request);
 
+  const prisma = new PrismaClient();
+  const count = await prisma.settings.count();
+
   let settings = { 
     apiKey: process.env.SHOPIFY_API_KEY || "", 
-    checked: false
+    checked: false,
+    count: count
   }
 
   // let dbFindUnique = await db.settings.findUnique({
@@ -72,6 +77,9 @@ export default function AppSettings(){
 
   const settings = useLoaderData();
   const [formState, setFormState] = useState(settings);
+
+  console.log('> settings count: ', settings.count);
+  // console.log('> settings  : ', settings.count);
 
   return (
 
