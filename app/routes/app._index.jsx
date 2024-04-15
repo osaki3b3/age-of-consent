@@ -14,7 +14,7 @@ export const loader = async ({ request }) => {
 
   await authenticate.admin(request);
 
-  // const prisma = new PrismaClient();
+  const prisma = new PrismaClient();
 
   // const settingsEntries = await prisma.settings.count({});
 
@@ -29,7 +29,7 @@ export const loader = async ({ request }) => {
 
 export default function Index() {
 
-  let loader = useLoaderData();
+  // let loader = useLoaderData();
 
   return ( 
 
