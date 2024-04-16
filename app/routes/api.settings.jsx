@@ -1,7 +1,7 @@
 // import { authenticate } from "../shopify.server";
 import { useLoaderData } from "@remix-run/react";
 import { PrismaClient } from '@prisma/client';
-import { json } from '@prisma/client';
+import { json } from "@remix-run/node";
 
 export const loader = async ({ request }) => {
 
