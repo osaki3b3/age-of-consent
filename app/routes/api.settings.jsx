@@ -20,15 +20,17 @@ export const loader = async ({ request }) => {
         settings.checked = ( isModalEnabled.value == 'active' ) ? true : false
     }
 
-    return settings;
+    // return settings;
+
+    return json(settings);
 
 };
 
   
-export default function Index() {
+// export default function Index() {
 
-    let settings = useLoaderData();
+//     let settings = useLoaderData();
 
-    return ( '{checked: '+settings.checked+'}' );
+//     return ( JSON.parse( '{checked: '+settings.checked+'}' ) );
 
-}
+// }

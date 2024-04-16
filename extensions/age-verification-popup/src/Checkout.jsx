@@ -59,18 +59,20 @@ function Extension() {
       {
         method: 'GET',
         headers: {
-          "Content-Type": "application.json",
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET",
           "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
         }
       }
     )
-    .then( response => response.json() )
+    .then( response => JSON.parse( response ) )
     .then( data => {
       setIsEnabledInSettings( isEnabledInSettings => isEnabledInSettings = data.checked )
     });
     
+    // setIsEnabledInSettings( isEnabledInSettings => isEnabledInSettings = true )
+
   })
 
   const handleCheckboxChange = () => {
