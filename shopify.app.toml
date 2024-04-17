@@ -3,7 +3,7 @@
 client_id = "e058db30f9914e08c87ed20fa58216c0"
 name = "NYC AgeCheck Popup v2.0"
 handle = "nyc-agecheck-popup-v2-0"
-application_url = "https://exposed-villages-contacting-registrar.trycloudflare.com"
+application_url = "https://sea-lion-app-t26u5.ondigitalocean.app"
 embedded = true
 
 [build]
@@ -17,9 +17,9 @@ scopes = "write_products"
 
 [auth]
 redirect_urls = [
-  "https://exposed-villages-contacting-registrar.trycloudflare.com/auth/callback",
-  "https://exposed-villages-contacting-registrar.trycloudflare.com/auth/shopify/callback",
-  "https://exposed-villages-contacting-registrar.trycloudflare.com/api/auth/callback"
+  "https://sea-lion-app-t26u5.ondigitalocean.app/auth/callback",
+  "https://sea-lion-app-t26u5.ondigitalocean.app/auth/shopify/callback",
+  "https://sea-lion-app-t26u5.ondigitalocean.app/api/auth/callback"
 ]
 
 [webhooks]

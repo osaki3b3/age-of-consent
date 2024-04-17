@@ -22,9 +22,11 @@ export const loader = async ({ request }) => {
         settings.checked = ( isModalEnabled.value == 'active' ) ? true : false
     }
 
+    const response = json(settings);
+
     // return settings;
 
-    return await cors( request, json(settings) );
+    return await cors( request, response );
 
 };
 

@@ -56,11 +56,11 @@ export async function action( { request } ){
     },
     update: {
       id: 'EnabledCheckout18yoModal',
-      value: settings.modalCheckbox
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'deactivated'
     },
     create: {
       id: 'EnabledCheckout18yoModal',
-      value: settings.modalCheckbox
+      value: ( settings.modalCheckbox ) ? settings.modalCheckbox : 'deactivated'
     }
   });
 
