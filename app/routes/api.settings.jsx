@@ -2,6 +2,7 @@
 import { useLoaderData } from "@remix-run/react";
 import { PrismaClient } from '@prisma/client';
 import { json } from "@remix-run/node";
+import { cors } from "remix-utils/cors";
 
 export const loader = async ({ request }) => {
 
@@ -23,7 +24,7 @@ export const loader = async ({ request }) => {
 
     // return settings;
 
-    return json(settings);
+    return await cors( request, json(settings) );
 
 };
 

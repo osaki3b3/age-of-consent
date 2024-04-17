@@ -58,15 +58,16 @@ function Extension() {
       `${domain}/api/settings`,
       {
         method: 'GET',
+        mode: 'no-cors',
         headers: {
-          "Content-Type": "application.json",
+          "Content-Type": "application/json",
           "Access-Control-Allow-Origin": "*",
           "Access-Control-Allow-Methods": "GET",
           "Access-Control-Allow-Headers": "Origin, Content-Type, X-Auth-Token"
         }
       }
     )
-    .then( response => JSON.parse( response ) )
+    .then( response => json )
     .then( data => {
       setIsEnabledInSettings( isEnabledInSettings => isEnabledInSettings = data.checked )
     });
